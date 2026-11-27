@@ -1164,7 +1164,7 @@
 
     /* 訂單送往 Google Apps Script（寫入 Google Sheet）
        部署好 GAS 後把網址貼在這裡；留空＝示範模式（不會真的送出） */
-    const GAS_URL = '';
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbyYryeMENe6mZxdVvG7eF0DGU9ePPCw3iygiA8QDXM2QdcgDppNV-bpQWLolKFoYNAm/exec';
 
     async function sendOrder(payload) {
       // 用 text/plain 送出，避免瀏覽器先送 CORS 預檢（GAS 不支援 OPTIONS）

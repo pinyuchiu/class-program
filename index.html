@@ -6,6 +6,16 @@
   <title>金煎坊 Golden Pan｜手工鍋貼專賣</title>
   <meta name="description" content="金煎坊 — 金黃酥脆，傳承手藝的極致美味。台灣在地豬肉、每日現包、現點現煎的手工鍋貼專賣店。" />
 
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#2B1D15" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="金煎坊" />
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png" />
+
   <!-- Google Fonts：典雅標題 Noto Serif TC + 無襯線內文 Noto Sans TC -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1425,6 +1435,12 @@
     updateHeader();
     refreshIcons();
   })();
+  </script>
+  <script>
+    // 註冊 Service Worker（PWA：可安裝到主畫面、離線開啟）
+    if ('serviceWorker' in navigator) {
+      addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+    }
   </script>
 </body>
 </html>

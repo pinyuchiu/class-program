@@ -1209,7 +1209,6 @@
       const host = document.getElementById('street3d');
       if (!host || !window.THREE) return;
       const T = THREE;
-      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       const renderer = new T.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -1404,10 +1403,14 @@
         shopLight.intensity = 1.5 + Math.sin(t * 7) * .05 + Math.sin(t * 13) * .04;
         renderer.render(scene, camera);
       }
-      if (reduce) { people.forEach(p => stepPerson(p, 0, 0)); renderer.render(scene, camera); }
-      else requestAnimationFrame(frame);
+      requestAnimationFrame(frame);
     }
-    if (window.THREE) buildStreet3D(); else addEventListener('load', buildStreet3D);
+    // Three.js 以 defer 載入：在 DOMContentLoaded 時就啟動，不必等所有圖片載完
+    (function startStreet(tries) {
+      if (window.THREE) return buildStreet3D();
+      if (tries > 100) return;
+      setTimeout(() => startStreet(tries + 1), 100);
+    })(0);
 
     /* ============================================================
        初始化
